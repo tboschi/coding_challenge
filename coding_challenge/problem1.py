@@ -1,7 +1,5 @@
 #! /bin/python3
 
-import sys
-
 from collections import Counter
 
 # convert card face value to int value
@@ -85,25 +83,25 @@ def score(hand):
     return [value] + ranks
 
 
-if len(sys.argv) < 1:
-    print("Input file expected", file=sys.stderr)
-    sys.exit(1)
-
-def game():
+def solve(file_input):
+    """ solution to problem 1 """
     p1wins = 0
-    with open(sys.argv[1]) as data:
+    with open(file_input) as data:
         for hand in data.read().splitlines():
             alls = hand.split()
             p1, p2 = alls[:5], alls[5:]
 
-            r1 = score(p1)
-            r2 = score(p2)
-
-            if r1 > r2:
+            if score(p1) > score(p2):
                 p1wins += 1
 
-    print(f"Player 1 won {p1wins} rounds")
+    return p1wins
 
-import timeit
-times = timeit.repeat('game()', globals=globals(), number=1, repeat=5)
-print(f">> best of 5 = {1000*min(times):.6f} ms")
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) < 1:
+        print("Input file expected", file=sys.stderr)
+        sys.exit(1)
+
+    solution = solve(sys.argv[1])
+    print(f"Solution to problem 1 is {solution}")
