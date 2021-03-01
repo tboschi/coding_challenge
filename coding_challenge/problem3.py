@@ -10,7 +10,7 @@ def load(file_input):
     return triangle
 
 
-def solve(file_input):
+def solve(file_input = 'triangle.txt'):
     triangle = load(file_input)
 
     path = triangle[0][0]
