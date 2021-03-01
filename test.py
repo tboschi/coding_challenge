@@ -2,18 +2,21 @@
 
 import timeit
 
-import coding_challenge.problem1 as c1
-import coding_challenge.problem2 as c2
-import coding_challenge.problem3 as c3
+from coding_challenge import problem1 as p1
+from coding_challenge import problem2 as p2
+from coding_challenge import problem3 as p3
+from coding_challenge import problem4 as p4
+from coding_challenge import problem5 as p5
+from coding_challenge import problem6 as p6
 
-answer = c1.solve('poker.txt')
-times = timeit.repeat('c1.solve(\'poker.txt\')', globals=globals(), number=1, repeat=5)
-print(f"Problem 1: solution {answer}, time (best of 5) = {1000*min(times):.6f} ms")
+challenge = {'problem 1' : p1,
+             'problem 2' : p2,
+             'problem 3' : p3,
+             'problem 4' : p4,
+             'problem 5' : p5,
+             'problem 6' : p6}
 
-answer = c2.solve()
-times = timeit.repeat('c2.solve()', globals=globals(), number=1, repeat=5)
-print(f"Problem 2: solution {answer}, time (best of 5) = {1000*min(times):.6f} ms")
-
-answer = c3.solve('triangle.txt')
-times = timeit.repeat('c3.solve(\'triangle.txt\')', globals=globals(), number=1, repeat=5)
-print(f"Problem 3: solution {answer}, time (best of 5) = {1000*min(times):.6f} ms")
+for name, lib in challenge.items():
+    answer = lib.solve()
+    times = timeit.repeat('lib.solve()', globals=globals(), number=1, repeat=5)
+    print(f"{name}: solution {answer},\ttime (best of 5) = {1000*min(times):.6f} ms")
