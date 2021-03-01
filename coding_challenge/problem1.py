@@ -83,7 +83,7 @@ def score(hand):
     return [value] + ranks
 
 
-def solve(file_input):
+def solve(file_input = 'poker.txt'):
     """ solution to problem 1 """
     p1wins = 0
     with open(file_input) as data:
