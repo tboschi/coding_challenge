@@ -12,7 +12,7 @@ which prints not only the answers to each problem, but also the execution time.
 
 ## Solutions
 
-This is the output of `test.py` on my system (AMD Ryzen 4000)
+This is the output of `test.py` on my system (Linux + AMD Ryzen 4000)
 ```
 problem 1: solution 376,	time (best of 5) = 8.184685 ms
 problem 2: solution 21124,	time (best of 5) = 1.556899 ms
