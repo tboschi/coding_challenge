@@ -1,7 +1,7 @@
 from functools import cache
 
 def gen_primes():
-    """ indefinite generator of prime numbers using the sieve of Erathostenes """
+    """ indefinite generator of prime numbers using the sieve of Eratosthenes """
 
     # dictionary with next number to skip
     # following a 'sieve line' of a prime number
@@ -21,7 +21,7 @@ def gen_primes():
         q += 1
 
 
-# LRU caching wiht inifite size
+# LRU caching with indefinite size
 @cache
 def is_prime(n: int) -> bool:
     """ primality test with 6k±1 optimization """
@@ -67,7 +67,7 @@ def solve(n = 5, tup = False):
         if p == 2 or p == 5:
             continue
 
-        # check in collected tuples is any can be extended
+        # check in collected tuples if any can be extended
         for t in tuples:
             if cat_prime(t, p):
                 tuples.append(t[:] + [p])

@@ -55,8 +55,8 @@ def where_hexagonal(n) -> int:
 def solve(n = 143):
     """ 2m-1 triangular numbers are also hexagonal,
     so any hexagonal number is automatically triangular
-    this routine only checks if hexagonal nubmers are pentagonal
-    return which 3-tuple of triangual, pentagonal, hexagonal entries
+    this routine only checks if hexagonal numbers are pentagonal
+    return which 3-tuple of triangular, pentagonal, hexagonal entries
     starting from n-th hexagonal number
     143rd hexagonal number is the first number
     also triangular and pentagonal (285th and 165th)

@@ -37,7 +37,7 @@ def score(hand):
         As such, there is no need to assign
         a score to royal flush
 
-    aguments:
+    arguments:
         hand - str with 5 cards space-separated
                e.g.  "8C TS KC 9H 4S"
 

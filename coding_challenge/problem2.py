@@ -34,7 +34,7 @@ voca = {1 : 'one',
         1000 : 'thousand'}
 
 def to_string(unit):
-    """ convert number into english words, from 0 up to 9999 """
+    """ convert number into English words, from 0 up to 9999 """
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 
@@ -71,7 +71,7 @@ def to_string(unit):
 
 
 def count_chars(unit):
-    """ count characters in number converted into english words, from 0 up to 9999 """
+    """ count characters in number converted into English words, from 0 up to 9999 """
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 

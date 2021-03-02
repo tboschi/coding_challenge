@@ -1,7 +1,7 @@
 #! /bin/python3
 
 def solve(n = 4e6, verb = False):
-    """ sum the even fibonacci values under n """
+    """ sum the even Fibonacci values under n """
     f0, f1, fn = 0, 1, 1
     tot = 0
     while fn < n:
