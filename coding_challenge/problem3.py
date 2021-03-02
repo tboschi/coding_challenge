@@ -11,25 +11,29 @@ def load(file_input):
     return triangle
 
 
-def solve(file_input = 'triangle.txt'):
+def solve(file_input = 'triangle.txt', verb = False):
     """ find maximum triangle path """
     triangle = load(file_input)
 
     path = triangle[0][0]
+    if verb:
+        print(f"{path} -> {path}")
     i = 0
     for lvl in triangle[1:]:
         if lvl[i] < lvl[i+1]:
             i += 1
 
         path += lvl[i]
+        if verb:
+            print(f"{lvl[i]} -> {path}")
 
     return path
 
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print("Input file expected", file=sys.stderr)
         sys.exit(1)
 
     solution = solve(sys.argv[1])
-    print(f"Solution to problem 3 is {solution}")
+    print(f"Sum of path is {solution}")

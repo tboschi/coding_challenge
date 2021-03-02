@@ -1,7 +1,6 @@
-import timeit
+#! /bin/python3
+
 from collections import Counter
-from functools import reduce
-import operator
 
 def factors(n):
     """ generator of prime factors of n """
@@ -40,27 +39,33 @@ def d(n) -> int:
     # sum of all the divisors can be decomposed as
     # prod ( 1 + p + p² + ...)
     # where prod is on p, sum is from 0 to m
-    # geometric sum ( p^k ) for k = 0, .., m
+    # geometric series ( p^k ) for k = 0, .., m
     # is = ( p^(m+1) - 1 ) / ( p - 1 )
 
-    prod = [(p**(m+1) - 1) // (p - 1) if m > 1 else p + 1 for p, m in fact.items()]
-    return reduce(operator.mul, prod, 1) - n
+    tot = 1
+    for p, m in fact.items():
+        tot *= (p**(m+1) - 1) // (p - 1) if m > 1 else p + 1
+    return tot - n
 
 
-def solve(n = 10000) -> int:
+def solve(n = 10000, verb = False) -> int:
     """ find sum of amicable numbers under n """
     checked = set()
-    tot = 1
-    for a in range(n+1):
+    tot = 0
+    for a in range(2, n+1):
         if a in checked:
             continue
         checked.add(a)
 
         b = d(a)
         if b == a:  # not amicable
+            if verb:
+                print(f"{a} is perfect")
             continue
 
         if d(b) == a:   # amicable
+            if verb:
+                print(f"{a} and {b} are amicable")
             tot += a + b    # update sum
         checked.add(b)
 
@@ -69,12 +74,5 @@ def solve(n = 10000) -> int:
 
 if __name__ == "__main__":
 
-    print(d(220))
-    print(d(60))
-    print(d(5040))
-    #for i in range(1000):
-        #print(f"d({i}) = {d(i)}")
-
-    answer = solve()
-    times = timeit.repeat('solve()', globals=globals(), number=1, repeat=5)
-    print(f"solution {answer},\ttime (best of 5) = {1000*min(times):.6f} ms")
+    print("Finding amicable numbers under 1e5")
+    solve(100000, True)

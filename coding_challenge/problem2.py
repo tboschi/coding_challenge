@@ -2,7 +2,7 @@
 
 import math
 
-# vocabulary
+# vocabulary from int to words
 voca = {1 : 'one',
         2 : 'two',
         3 : 'three',
@@ -44,6 +44,7 @@ def to_string(unit):
     if unit < 100 and unit in voca:
         return voca[unit]
 
+    # magnitude of input number
     mag = int(math.log10(unit))
 
     msb = unit // 10**mag
@@ -80,6 +81,7 @@ def count_chars(unit):
     if unit < 100 and unit in voca:
         return len(voca[unit])
 
+    # magnitude of input number
     mag = int(math.log10(unit))
 
     msb = unit // 10**mag
@@ -101,11 +103,11 @@ def count_chars(unit):
 
 
 def solve():
-    """ sum all characters needed to write numbers from 1 to 1000 """
+    """ sum all letters needed to write numbers from 1 to 1000 """
     return sum(count_chars(i+1) for i in range(1000))
 
 
 if __name__ == "__main__":
 
-    solution = solve()
-    print(f"Solution to problem 2 is {solution}")
+    for i in range(0, 10000):
+        print(f"{i} is \"{to_string(i)}\" ({count_chars(i)} letters)")

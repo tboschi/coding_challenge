@@ -1,20 +1,20 @@
-def solve(n = 4000000):
-    """ sum of even fibonacci values under n """
-    f0, f1 = 1, 2
-    fib = f0 + f1
+#! /bin/python3
 
-    tot = 2
-    while fib < n:
-        if fib % 2 == 0:
-            tot += fib
+def solve(n = 4e6, verb = False):
+    """ sum the even fibonacci values under n """
+    f0, f1, fn = 0, 1, 1
+    tot = 0
+    while fn < n:
+        if fn % 2 == 0:
+            tot += fn
 
         # update
-        f0 = f1
-        f1 = fib
-        fib = f0 + f1
+        if verb:
+            print(f"{fn} -> {tot}")
+        f0, f1, fn = f1, fn, f1 + fn
 
     return tot
 
 
 if __name__ == "__main__":
-    print(solve())
+    solve(4e6, True)

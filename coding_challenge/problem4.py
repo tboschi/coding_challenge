@@ -1,3 +1,5 @@
+#! /bin/python3
+
 import math
 
 def triangular(n) -> int:
@@ -55,7 +57,7 @@ def solve(n = 143):
     so any hexagonal number is automatically triangular
     this routine only checks if hexagonal nubmers are pentagonal
     return which 3-tuple of triangual, pentagonal, hexagonal entries
-    starting from n (default 0)
+    starting from n-th hexagonal number
     143rd hexagonal number is the first number
     also triangular and pentagonal (285th and 165th)
     so starting from 144
@@ -70,8 +72,9 @@ def solve(n = 143):
 
 if __name__ == "__main__":
 
+    print("Finding triangular+pentagonal+hexagonal numbers under 1e7")
     n = 0
-    while n < 1e9:
+    while n < 1e7:
         n += 1
         x = hexagonal(n)
         if is_pentagonal(x):

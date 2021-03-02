@@ -84,24 +84,29 @@ def score(hand):
 
 
 def solve(file_input = 'poker.txt'):
-    """ count number of rounds won by p1 """
+    """ count number of rounds won by p1 from input file """
     p1wins = 0
     with open(file_input) as data:
         for hand in data.read().splitlines():
             alls = hand.split()
             p1, p2 = alls[:5], alls[5:]
 
+            # use list comparison to determine winner
             if score(p1) > score(p2):
                 p1wins += 1
+            #elif score(p1) < score(p2):
+                 #p2wins += 1
+            #else:
+                #split the pot!
 
     return p1wins
 
 
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print("Input file expected", file=sys.stderr)
         sys.exit(1)
 
     solution = solve(sys.argv[1])
-    print(f"Solution to problem 1 is {solution}")
+    print(f"Player one won {solution} rounds")
