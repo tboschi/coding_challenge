@@ -1,6 +1,7 @@
 #! /bin/python3
 
 def load(file_input):
+    """ read file with triangle configuration """
     triangle = []
     with open(file_input) as f:
         for line in f:
@@ -11,6 +12,7 @@ def load(file_input):
 
 
 def solve(file_input = 'triangle.txt'):
+    """ find maximum triangle path """
     triangle = load(file_input)
 
     path = triangle[0][0]

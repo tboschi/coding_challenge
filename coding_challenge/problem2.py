@@ -2,6 +2,7 @@
 
 import math
 
+# vocabulary
 voca = {1 : 'one',
         2 : 'two',
         3 : 'three',
@@ -33,6 +34,7 @@ voca = {1 : 'one',
         1000 : 'thousand'}
 
 def to_string(unit):
+    """ convert number into english words, from 0 up to 9999 """
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 
@@ -68,6 +70,7 @@ def to_string(unit):
 
 
 def count_chars(unit):
+    """ count characters in number converted into english words, from 0 up to 9999 """
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 
@@ -98,6 +101,7 @@ def count_chars(unit):
 
 
 def solve():
+    """ sum all characters needed to write numbers from 1 to 1000 """
     return sum(count_chars(i+1) for i in range(1000))
 
 

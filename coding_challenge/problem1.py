@@ -84,7 +84,7 @@ def score(hand):
 
 
 def solve(file_input = 'poker.txt'):
-    """ solution to problem 1 """
+    """ count number of rounds won by p1 """
     p1wins = 0
     with open(file_input) as data:
         for hand in data.read().splitlines():

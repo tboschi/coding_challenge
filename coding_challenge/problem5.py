@@ -1,6 +1,5 @@
 import timeit
 from collections import Counter
-import math
 from functools import reduce
 import operator
 
