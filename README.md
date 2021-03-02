@@ -8,7 +8,7 @@ All problems can be tested at once with
 ```
 python test.py
 ```
-which prints not only the answers to each problem, but also the execution time.
+which prints not only the answers to each problem, but also the execution time in milliseconds (best of 5 runs).
 
 ## Solutions
 
