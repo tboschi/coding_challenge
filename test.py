@@ -8,13 +8,15 @@ from coding_challenge import problem3 as p3
 from coding_challenge import problem4 as p4
 from coding_challenge import problem5 as p5
 from coding_challenge import problem6 as p6
+from coding_challenge import problem7 as p7
 
 challenge = {'problem 1' : p1,
              'problem 2' : p2,
              'problem 3' : p3,
              'problem 4' : p4,
              'problem 5' : p5,
-             'problem 6' : p6}
+             'problem 6' : p6,
+             'problem 7' : p7}
 
 for name, lib in challenge.items():
     answer = lib.solve()
