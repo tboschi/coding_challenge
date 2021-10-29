@@ -2,8 +2,9 @@
 
 from collections import Counter
 
+
 def factors(n):
-    """ generator of prime factors of n """
+    """generator of prime factors of n"""
     i = 2
     while i * i <= n:
         if n % i == 0:
@@ -16,10 +17,10 @@ def factors(n):
 
 
 def divisors(n):
-    """ generator of proper divisors of n
-        (excluding 1 and n)
+    """generator of proper divisors of n
+    (excluding 1 and n)
     """
-    #yield 1
+    # yield 1
     i = 2
     while i * i < n:
         if n % i == 0:
@@ -31,7 +32,7 @@ def divisors(n):
 
 
 def d(n) -> int:
-    """ sum of proper divisors of n """
+    """sum of proper divisors of n"""
 
     # get prime factorization of n = {p: m}
     fact = Counter(factors(n))
@@ -44,15 +45,15 @@ def d(n) -> int:
 
     tot = 1
     for p, m in fact.items():
-        tot *= (p**(m+1) - 1) // (p - 1) if m > 1 else p + 1
+        tot *= (p ** (m + 1) - 1) // (p - 1) if m > 1 else p + 1
     return tot - n
 
 
-def solve(n = 10000, verb = False) -> int:
-    """ find sum of amicable numbers under n """
+def solve(n=10000, verb=False) -> int:
+    """find sum of amicable numbers under n"""
     checked = set()
     tot = 0
-    for a in range(2, n+1):
+    for a in range(2, n + 1):
         if a in checked:
             continue
         checked.add(a)
@@ -63,10 +64,10 @@ def solve(n = 10000, verb = False) -> int:
                 print(f"{a} is perfect")
             continue
 
-        if d(b) == a:   # amicable
+        if d(b) == a:  # amicable
             if verb:
                 print(f"{a} and {b} are amicable")
-            tot += a + b    # update sum
+            tot += a + b  # update sum
         checked.add(b)
 
     return tot

@@ -1,22 +1,23 @@
 from functools import cache
 
+
 def gen_primes():
-    """ indefinite generator of prime numbers using the sieve of Eratosthenes """
+    """indefinite generator of prime numbers using the sieve of Eratosthenes"""
 
     # dictionary with next number to skip
     # following a 'sieve line' of a prime number
     P = {}
-    q = 2   # start with 2
+    q = 2  # start with 2
     while True:
         if q not in P:  # is prime
             yield q
-            P[q + q] = q    # next number to skip is q+q (from q prime number)
-        else:           # q is not prime
-            n = q + P[q]    # next number to skip
-            while n in P:   # add prime until new number not in dict is found
+            P[q + q] = q  # next number to skip is q+q (from q prime number)
+        else:  # q is not prime
+            n = q + P[q]  # next number to skip
+            while n in P:  # add prime until new number not in dict is found
                 n += P[q]
-            P[n] = P[q]     # add it, coming from same prime number
-            del P[q]        # remove old entry
+            P[n] = P[q]  # add it, coming from same prime number
+            del P[q]  # remove old entry
 
         q += 1
 
@@ -24,7 +25,7 @@ def gen_primes():
 # LRU caching with indefinite size
 @cache
 def is_prime(n: int) -> bool:
-    """ primality test with 6k±1 optimization """
+    """primality test with 6k±1 optimization"""
     if n <= 3:
         return n > 1
     if n % 2 == 0 or n % 3 == 0:
@@ -38,24 +39,24 @@ def is_prime(n: int) -> bool:
 
 
 def cat_prime(a, b) -> bool:
-    """ if 'a', 'b', check if 'ab' and 'ba' are also prime
-            a   is prime int or collection of prime int
-            b   must be prime number
+    """if 'a', 'b', check if 'ab' and 'ba' are also prime
+    a   is prime int or collection of prime int
+    b   must be prime number
     """
-    try:    # check if a is iterable
+    try:  # check if a is iterable
         it = iter(a)
-    except: # it is not, treat as int
-        return is_prime(int(str(a)+str(b))) and is_prime(int(str(b)+str(a)))
-    else:   # must cat_prime with all elements
+    except:  # it is not, treat as int
+        return is_prime(int(str(a) + str(b))) and is_prime(int(str(b) + str(a)))
+    else:  # must cat_prime with all elements
         return all(cat_prime(p, b) for p in a)
 
 
-def solve(n = 5, tup = False):
-    """ find first n-tuple of prime numbers with the following property:
-        any two of those n primes can be concatenated in any order to
-        form another prime.
-        e.g.  7 and 109 form 7109 or 1097 and both are prime
-        return the sum of those n prime numbers
+def solve(n=5, tup=False):
+    """find first n-tuple of prime numbers with the following property:
+    any two of those n primes can be concatenated in any order to
+    form another prime.
+    e.g.  7 and 109 form 7109 or 1097 and both are prime
+    return the sum of those n prime numbers
     """
 
     primer = gen_primes()
@@ -84,7 +85,6 @@ def solve(n = 5, tup = False):
         for t in tuples:
             if len(t) == n:
                 return t if tup else sum(t)
-
 
 
 if __name__ == "__main__":

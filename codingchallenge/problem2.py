@@ -3,43 +3,46 @@
 import math
 
 # vocabulary from int to words
-voca = {1 : 'one',
-        2 : 'two',
-        3 : 'three',
-        4 : 'four',
-        5 : 'five',
-        6 : 'six',
-        7 : 'seven',
-        8 : 'eight',
-        9 : 'nine',
-        10 : 'ten',
-        11 : 'eleven',
-        12 : 'twelve',
-        13 : 'thirteen',
-        14 : 'fourteen',
-        15 : 'fifteen',
-        16 : 'sixteen',
-        17 : 'seventeen',
-        18 : 'eighteen',
-        19 : 'nineteen',
-        20 : 'twenty',
-        30 : 'thirty',
-        40 : 'forty',
-        50 : 'fifty',
-        60 : 'sixty',
-        70 : 'seventy',
-        80 : 'eighty',
-        90 : 'ninety',
-        100 : 'hundred',
-        1000 : 'thousand'}
+voca = {
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+    10: "ten",
+    11: "eleven",
+    12: "twelve",
+    13: "thirteen",
+    14: "fourteen",
+    15: "fifteen",
+    16: "sixteen",
+    17: "seventeen",
+    18: "eighteen",
+    19: "nineteen",
+    20: "twenty",
+    30: "thirty",
+    40: "forty",
+    50: "fifty",
+    60: "sixty",
+    70: "seventy",
+    80: "eighty",
+    90: "ninety",
+    100: "hundred",
+    1000: "thousand",
+}
+
 
 def to_string(unit):
-    """ convert number into English words, from 0 up to 9999 """
+    """convert number into English words, from 0 up to 9999"""
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 
     if not unit:
-        return 'zero'
+        return "zero"
 
     if unit < 100 and unit in voca:
         return voca[unit]
@@ -47,12 +50,12 @@ def to_string(unit):
     # magnitude of input number
     mag = int(math.log10(unit))
 
-    msb = unit // 10**mag
-    gross = msb * 10**mag
+    msb = unit // 10 ** mag
+    gross = msb * 10 ** mag
     if gross < 100 and gross in voca:
         letters = voca[gross]
     else:
-        letters = voca[msb] + " " + voca[10**mag] if msb else ""
+        letters = voca[msb] + " " + voca[10 ** mag] if msb else ""
 
     unit -= gross
     if not unit:
@@ -71,7 +74,7 @@ def to_string(unit):
 
 
 def count_chars(unit):
-    """ count characters in number converted into English words, from 0 up to 9999 """
+    """count characters in number converted into English words, from 0 up to 9999"""
     if unit > 9999:
         raise ValueError("range accepted 0-9999")
 
@@ -84,12 +87,12 @@ def count_chars(unit):
     # magnitude of input number
     mag = int(math.log10(unit))
 
-    msb = unit // 10**mag
-    gross = msb * 10**mag
+    msb = unit // 10 ** mag
+    gross = msb * 10 ** mag
     if gross < 100 and gross in voca:
         chars = len(voca[gross])
     else:
-        chars = len(voca[msb] + voca[10**mag]) if msb else 0
+        chars = len(voca[msb] + voca[10 ** mag]) if msb else 0
 
     unit -= gross
     if not unit:
@@ -97,17 +100,17 @@ def count_chars(unit):
 
     sep = 0
     if (mag > 2 and unit < 100) or mag == 2:
-        sep = 3 # "and"
+        sep = 3  # "and"
 
     return chars + sep + count_chars(unit)
 
 
 def solve():
-    """ sum all letters needed to write numbers from 1 to 1000 """
-    return sum(count_chars(i+1) for i in range(1000))
+    """sum all letters needed to write numbers from 1 to 1000"""
+    return sum(count_chars(i + 1) for i in range(1000))
 
 
 if __name__ == "__main__":
 
     for i in range(0, 10000):
-        print(f"{i} is \"{to_string(i)}\" ({count_chars(i)} letters)")
+        print(f'{i} is "{to_string(i)}" ({count_chars(i)} letters)')
