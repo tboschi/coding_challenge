@@ -3,23 +3,37 @@
 from collections import Counter
 
 # convert card face value to int value
-rank = { '2' : 0, '3' : 1, '4' : 2, '5' : 3,
-         '6' : 4, '7' : 5, '8' : 6, '9' : 7,
-         'T' : 8, 'J' : 9, 'Q' : 10, 'K' : 11,
-         'A' : 12 }
+rank = {
+    "2": 0,
+    "3": 1,
+    "4": 2,
+    "5": 3,
+    "6": 4,
+    "7": 5,
+    "8": 6,
+    "9": 7,
+    "T": 8,
+    "J": 9,
+    "Q": 10,
+    "K": 11,
+    "A": 12,
+}
+
 
 def is_flush(suits):
-    """ Check if the suits (str) are of the same type """
+    """Check if the suits (str) are of the same type"""
     return suits == 5 * suits[0]
 
+
 def is_straight(ranks):
-    """ Check if cards are in a straight order
-        assuming ranks is an already sorted list
+    """Check if cards are in a straight order
+    assuming ranks is an already sorted list
     """
     return all(p == n + 1 for p, n in zip(ranks[:-1], (ranks[1:])))
 
+
 def score(hand):
-    """ Give a score to hand of 5 cards for poker
+    """Give a score to hand of 5 cards for poker
         It produces a list where the first element
         is the score from hand combination
             0 - no combo
@@ -48,7 +62,7 @@ def score(hand):
     # value of cards
     ranks = sorted([rank[card[0]] for card in hand], reverse=True)
     # suits of cards
-    suits = ''.join(card[1] for card in hand)
+    suits = "".join(card[1] for card in hand)
 
     # count of unique cards
     count = Counter(ranks)
@@ -60,22 +74,22 @@ def score(hand):
     # order is such that more common hands are checked first
     if count[0] == 2:
         if count[1] == 2:
-            value = 2   # two pairs
+            value = 2  # two pairs
         else:
-            value = 1   # one pair
+            value = 1  # one pair
     elif count[0] == 3:
         if count[1] == 2:
-            value = 6   # full house
+            value = 6  # full house
         else:
-            value = 3   # three of a kind
-    elif is_straight(ranks): 
+            value = 3  # three of a kind
+    elif is_straight(ranks):
         if is_flush(suits):
             value = 8
         else:
             value = 4
     elif is_flush(suits):
-        value = 5 
-    elif count[0] == 4: # four of a kind
+        value = 5
+    elif count[0] == 4:  # four of a kind
         value = 7
     else:
         value = 0
@@ -83,8 +97,8 @@ def score(hand):
     return [value] + ranks
 
 
-def solve(file_input = 'poker.txt'):
-    """ count number of rounds won by p1 from input file """
+def solve(file_input="poker.txt"):
+    """count number of rounds won by p1 from input file"""
     p1wins = 0
     with open(file_input) as data:
         for hand in data.read().splitlines():
@@ -94,16 +108,17 @@ def solve(file_input = 'poker.txt'):
             # use list comparison to determine winner
             if score(p1) > score(p2):
                 p1wins += 1
-            #elif score(p1) < score(p2):
-                 #p2wins += 1
-            #else:
-                #split the pot!
+            # elif score(p1) < score(p2):
+            # p2wins += 1
+            # else:
+            # split the pot!
 
     return p1wins
 
 
 if __name__ == "__main__":
     import sys
+
     if len(sys.argv) < 2:
         print("Input file expected", file=sys.stderr)
         sys.exit(1)
